@@ -1,12 +1,6 @@
-/* Definimos las Custom properties */
-:root {
-  /* Colores */
-  --negro: #393939;
-
-  /* Tipografía */
-  --tipo-principal: Helvetica, Arial, sans-serif;
-  --tipo-secundaria: Verdana;
-}
+@import './variables';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap');
 
 *,
 *::before,
@@ -84,11 +78,6 @@ q:after {
   content: none;
 }
 
-::selection {
-  background-color: var(--negro);
-  color: var(--blanco);
-}
-
 form,
 input,
 textarea,
@@ -119,8 +108,8 @@ svg {
 body {
   min-height: 100vh;
   font-size: 100%;
-  font-family: var(--tipo-principal);
-  background: #242424;
+  font-family: $principal-font;
+  background: $black;
   color: #fff;
   hyphens: auto;
   font-smooth: always;

@@ -1,0 +1,118 @@
+@import './variables';
+
+.userInfo__container {
+  // position: relative;
+  padding: .5rem;
+
+
+  .userInfo__h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+
+    .userInfo__h1__span {
+      color: $light-blue
+    }
+  }
+
+  .userInfo__posts {
+    background: $light-grey;
+    border-radius: $border-radius;
+    padding: 1rem;
+
+    .userInfo__posts__h3 {
+      color: $light-blue;
+      font-size: 1.4em;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .userInfo__posts__list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(12em), 1fr));
+      gap: 2rem;
+
+      .userInfo__card {
+        width: 100%;
+        height: 12rem;
+        gap: 1rem;
+
+        .userInfo__post__textarea {
+          resize: none;
+          overflow: auto;
+          outline: none;
+          background: $grey;
+          border-radius: $border-radius;
+          padding: .3rem .5rem;
+          height: 70%;
+          width: 100%;
+
+          &::-webkit-scrollbar {
+            width: 4px;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background: $dark-blue;
+            border-radius: .2rem;
+          }
+        }
+
+        .userInfo__card__container__buttons {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 1rem;
+
+          .userInfo__card__button {
+            cursor: pointer;
+            margin-top: .4rem;
+            font-weight: bold;
+            padding: .3rem 0;
+            border-radius: $border-radius;
+            width: 100%;
+            transition: .2s ease-in-out;
+
+            &:hover {
+              transform: scale(1.01);
+            }
+          }
+
+          .userInfo__button__delete {
+            background: $red;
+
+            &:hover {
+              background: $light-red;
+            }
+          }
+
+          .userInfo__button__edit {
+            background: $dark-blue;
+
+            &:hover {
+              background: $light-blue;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .userInfo__container {
+    margin: 0 auto;
+    width: 80%;
+
+    .userInfo__h1 {
+      font-size: 2em;
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .userInfo__container {
+    width: 60%;
+  }
+}

@@ -1,0 +1,63 @@
+@import './variables';
+
+.notFound__container {
+  font-family: $secondary-font;
+  height: 90vh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+
+  .notFound__div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+
+    .notFound__p {
+      color: $light-red;
+      font-size: 3em;
+    }
+
+    .notFound__404 {
+      color: $light-blue;
+      font-size: 9em;
+      animation: notFound 5s infinite backwards;
+    }
+  }
+}
+
+@keyframes notFound {
+  0% {
+    color: transparent;
+  }
+
+  25% {
+    color: $light-blue;
+  }
+
+  50% {
+    color: transparent;
+  }
+
+  75% {
+    color: $dark-blue
+  }
+
+  100% {
+    color: transparent;
+  }
+}
+
+@media (min-width:1024px) {
+  .notFound__container {
+    .notFound__div {
+      .notFound__p {
+        font-size: 5em;
+      }
+
+      .notFound__404 {
+        font-size: 15em;
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+@import './variables';
+
+.postList__container {
+  width: 95%;
+  margin: 1rem auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(16em), 1fr));
+  gap: .4rem;
+
+  .postList__card {
+    background: $light-grey;
+    border-radius: $border-radius;
+    width: 100%;
+    height: 12rem;
+    padding: 1rem;
+    border: .125rem solid transparent;
+    transition: .1s ease-out;
+
+    &:hover {
+      border-color: $dark-blue;
+      transform: scale(1.02);
+    }
+
+    .postList__header {
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+
+      .postList__card__h3 {
+        font-size: 1.3em;
+        font-weight: bold;
+
+        .postList__card__span {
+          color: $light-blue;
+        }
+      }
+
+      .postList__card__at {
+        font-size: .55em;
+        color: $opaque-white;
+      }
+    }
+
+    .postList__card__p {
+      resize: none;
+      overflow: auto;
+      margin-top: .5rem;
+      background: $grey;
+      border-radius: $border-radius;
+      padding: .3rem .5rem;
+      height: 70%;
+      width: 100%;
+
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $dark-blue;
+        border-radius: .2rem;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .postList__container {
+    width: 50%;
+  }
+}

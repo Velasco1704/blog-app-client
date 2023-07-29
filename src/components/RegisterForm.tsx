@@ -6,7 +6,7 @@ import { loginUser } from "../features/userSlice";
 import { PiWarningDiamond } from "react-icons/pi";
 import "../styles/Form.scss";
 
-export const LoginForm = ({
+export const RegisterForm = ({
   typeOfForm,
   setTypeOfForm,
 }: {
@@ -17,6 +17,7 @@ export const LoginForm = ({
   const dispatch = useDispatch();
   const [error, setError] = useState(false);
   const [form, setForm] = useState({
+    fullName: null,
     email: null,
     password: null,
   });
@@ -27,7 +28,8 @@ export const LoginForm = ({
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     return await axios
-      .post("http://localhost:3003/api/login", {
+      .post("http://localhost:3003/api/register", {
+        fullName: form.fullName,
         email: form.email,
         password: form.password,
       })
@@ -44,24 +46,32 @@ export const LoginForm = ({
 
   return (
     <div className="Form__container">
-      <h1 className="Form__container__h1">Login</h1>
+      <h1 className="Form__container__h1">Register</h1>
       <form className="Form" onSubmit={handleSubmit}>
         <div className="Form__inputs__container">
           <input
             className="Form__input"
-            type="email"
-            required
+            type="text"
+            name="fullName"
+            placeholder="Full Name"
+            autoComplete="off"
             onChange={handleChange}
+          />
+          <input
+            className="Form__input"
+            type="email"
             name="email"
             placeholder="Email"
+            autoComplete="off"
+            onChange={handleChange}
           />
           <input
             className="Form__input"
             type="password"
-            required
-            onChange={handleChange}
             name="password"
             placeholder="******"
+            autoComplete="off"
+            onChange={handleChange}
           />
         </div>
         {error && (
@@ -73,14 +83,14 @@ export const LoginForm = ({
           </div>
         )}
         <button className="Form__button" type="submit">
-          Login
+          Register
         </button>
       </form>
       <button
         className="change__form"
         onClick={() => setTypeOfForm(!typeOfForm)}
       >
-        Register
+        Login
       </button>
     </div>
   );

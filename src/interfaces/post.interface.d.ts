@@ -3,7 +3,11 @@ export interface Post {
     id: string;
     body: string;
     create_at: string;
-    user: string;
     userId: string;
-  };
+    user: {
+      id: string;
+      fullName: string;
+      email: string;
+    };
+  }[];
 }

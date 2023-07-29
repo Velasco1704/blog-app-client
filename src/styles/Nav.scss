@@ -1,0 +1,168 @@
+@import './variables';
+
+.navBar__header {
+  width: 100%;
+  display: flex;
+  padding: 1rem 2rem;
+  align-items: center;
+  justify-content: space-between;
+
+  .navBar__logo {
+    width: 5rem;
+
+    .navBar__logo__image {
+      width: 100%;
+    }
+  }
+
+  .navBar__button__FaBars {
+    cursor: pointer;
+    padding: 1rem;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    transition: .2s ease-in-out;
+
+    &:hover {
+      background: rgba(0, 51, 255, 0.21);
+    }
+  }
+
+  .navBar__container {
+    z-index: 1;
+    background: $black;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+
+    .navNar__menu {
+      position: relative;
+
+      .navBar__ul {
+        font-size: 1.1em;
+        display: grid;
+        place-items: center;
+        gap: 1rem;
+
+        .navBar__link {
+          padding: .3rem 1rem;
+          border-radius: $border-radius;
+          transition: .2s ease-out;
+
+          &:hover {
+            background: $opaque-dark-blue;
+            transition: .3s ease-out;
+            transform: scale(1.1);
+          }
+        }
+
+        .navBar__logOut {
+          cursor: pointer;
+          box-shadow: $box-shadow;
+          font-weight: bold;
+          background: $red;
+          margin-top: 2rem;
+          width: 60%;
+          padding: .6rem 0;
+          border-radius: $border-radius;
+          transition: .2s ease-out;
+
+          &:hover {
+            background: $light-red;
+            transform: scale(1.1);
+          }
+        }
+      }
+
+      .navBar__button__cross {
+        position: absolute;
+        top: -1rem;
+        right: -1rem;
+        cursor: pointer;
+        padding: 1rem;
+        font-size: 1.5rem;
+        border-radius: 50%;
+        transition: .2s ease-in-out;
+
+        &:hover {
+          background: rgba(255, 2552, 255, .1);
+          color: $light-red;
+        }
+      }
+    }
+  }
+
+  .open__menu {
+    display: block;
+  }
+}
+
+@media (min-width: 768px) {
+  .navBar__header {
+    .navBar__button__FaBars {
+      display: none;
+    }
+
+    .navBar__container {
+      width: auto;
+      background: transparent;
+      position: static;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+
+      .navNar__menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .navBar__ul {
+          font-size: 1em;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .navBar__logOut {
+            margin-top: 0;
+            padding: .3rem 1rem;
+          }
+        }
+
+        .navBar__button__cross {
+          padding: 1rem;
+        }
+
+        .navBar__button__cross {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .navBar__header {
+    .navBar__logo {
+      width: 6rem;
+    }
+
+    .navBar__container {
+      .navNar__menu {
+        .navBar__ul {
+          font-size: 1.3em;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .navBar__header {
+    .navBar__logo {
+      width: 7rem;
+    }
+  }
+}

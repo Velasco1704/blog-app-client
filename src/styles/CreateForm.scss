@@ -1,0 +1,65 @@
+@import './variables';
+
+.createForm__container {
+  border-radius: $border-radius;
+  background: $grey;
+  box-shadow: $box-shadow;
+  padding: 2rem;
+
+  .creteForm__container__textarea {
+    font-size: 1.1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    .createForm__label {
+      font-weight: bold;
+    }
+
+    .creteForm__textarea {
+      resize: none;
+      outline: none;
+      background: $light-grey;
+      box-shadow: $box-shadow;
+      padding: .5rem;
+      border-radius: $border-radius;
+      border: .125rem solid transparent;
+      transition: .1s linear;
+
+      &:hover {
+        border-color: $light-blue;
+      }
+
+      &:focus {
+        border-color: $dark-blue
+      }
+
+      &::-webkit-scrollbar {
+        width: 2px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $light-blue;
+        border-radius: .2rem;
+      }
+    }
+  }
+
+  .createForm__button {
+    cursor: pointer;
+    margin-top: 1rem;
+    width: 100%;
+    border-radius: $border-radius;
+    padding: .4rem 0;
+    background: $dark-blue;
+    box-shadow: $box-shadow;
+    transition: .2s ease-in-out;
+
+    &:hover {
+      background: $light-blue;
+      transform: scale(1.02);
+    }
+  }
+}

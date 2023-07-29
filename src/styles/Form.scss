@@ -1,0 +1,104 @@
+@import './variables';
+
+.Form__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+
+  .Form__container__h1 {
+    color: $light-blue;
+    font-size: 3em;
+    font-weight: bold;
+  }
+
+  .Form {
+    background: $grey;
+    box-shadow: $box-shadow;
+    color: $black;
+    display: flex;
+    padding: 2rem;
+    border-radius: $border-radius;
+    flex-direction: column;
+    gap: 1.6rem;
+
+    .Form__inputs__container {
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+
+      .Form__input {
+        outline: none;
+        color: $white;
+        background: $light-grey;
+        box-shadow: $box-shadow;
+        padding: .5rem 1rem;
+        border-radius: $border-radius;
+        border: .125rem solid transparent;
+        transition: .1s linear;
+
+        &:hover {
+          border-color: $light-blue;
+        }
+
+        &:focus {
+          border-color: $dark-blue;
+        }
+      }
+    }
+
+    .Form__error {
+      color: red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: .5rem;
+
+      .Form__error__icon {
+        font-size: 1.3em;
+      }
+    }
+
+    .Form__button {
+      cursor: pointer;
+      color: $white;
+      background: $dark-blue;
+      box-shadow: $box-shadow;
+      padding: .5rem 1rem;
+      margin-bottom: .5rem;
+      border-radius: $border-radius;
+      transition: .2s ease-in-out;
+
+      &:hover {
+        background: $light-blue;
+        transform: scale(1.02);
+      }
+    }
+  }
+
+  .change__form {
+    cursor: pointer;
+    position: absolute;
+    bottom: .3rem;
+    right: .3em;
+    padding: .2rem .3rem;
+    border: .2rem solid transparent;
+    border-radius: $border-radius;
+    font-weight: bold;
+
+    &:hover {
+      border-color: $light-grey;
+      background: $light-grey;
+    }
+  }
+}
+
+@media (min-width: 375px) {
+  .Form__container {
+    .Form {
+      padding: 3rem;
+    }
+  }
+}
