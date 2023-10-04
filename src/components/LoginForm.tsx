@@ -5,6 +5,7 @@ import { loginUser } from "../features/userSlice";
 import { PiWarningDiamond } from "react-icons/pi";
 import { useLoginMutation } from "../api/apiSlice";
 import "../styles/Form.scss";
+import { DotsLoader } from "./Loaders/DotsLoader";
 
 export const LoginForm = ({
   typeOfForm,
@@ -13,7 +14,7 @@ export const LoginForm = ({
   typeOfForm: boolean;
   setTypeOfForm: (value: boolean) => void;
 }) => {
-  const [login, { data, isSuccess, isError }] = useLoginMutation();
+  const [login, { data, isSuccess, isError, isLoading }] = useLoginMutation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [form, setForm] = useState({
@@ -67,7 +68,7 @@ export const LoginForm = ({
           </div>
         )}
         <button className="Form__button" type="submit">
-          Login
+          {isLoading ? <DotsLoader /> : "Login"}
         </button>
       </form>
       <button

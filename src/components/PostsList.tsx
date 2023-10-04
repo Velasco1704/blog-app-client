@@ -1,10 +1,10 @@
 import { useGetPostsQuery } from "../api/apiSlice";
 import "../styles/PostList.scss";
-import { Loading } from "./Loading";
+import { Loader } from "./Loaders/Loader";
 
 export const PostsList = () => {
   const { data: posts } = useGetPostsQuery(undefined);
-  if (posts === undefined) return <Loading />;
+  if (posts === undefined) return <Loader />;
   return (
     <div className="postList__container">
       {posts.result.map((post) => (

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDeletePostMutation, useGetUserQuery } from "../api/apiSlice";
 import { EditModal } from "./EditModal";
 import "../styles/UserInfo.scss";
-import { Loading } from "./Loading";
+import { Loader } from "./Loaders/Loader";
 
 export const UserInfo = ({ id }: { id: string }) => {
   const [editModal, setEditModal] = useState({
@@ -14,7 +14,7 @@ export const UserInfo = ({ id }: { id: string }) => {
   const { data: user } = useGetUserQuery(id);
 
   if (user === undefined) {
-    return <Loading />;
+    return <Loader />;
   } else {
     return (
       <div className="userInfo__container">

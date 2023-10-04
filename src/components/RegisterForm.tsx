@@ -5,6 +5,7 @@ import { loginUser } from "../features/userSlice";
 import { PiWarningDiamond } from "react-icons/pi";
 import "../styles/Form.scss";
 import { useRegisterMutation } from "../api/apiSlice";
+import { DotsLoader } from "./Loaders/DotsLoader";
 
 export const RegisterForm = ({
   typeOfForm,
@@ -13,7 +14,8 @@ export const RegisterForm = ({
   typeOfForm: boolean;
   setTypeOfForm: (value: boolean) => void;
 }) => {
-  const [register, { data, isSuccess, isError }] = useRegisterMutation();
+  const [register, { data, isSuccess, isError, isLoading }] =
+    useRegisterMutation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [form, setForm] = useState({
@@ -83,7 +85,7 @@ export const RegisterForm = ({
           </div>
         )}
         <button className="Form__button" type="submit">
-          Register
+          {isLoading ? <DotsLoader /> : "Register"}
         </button>
       </form>
       <button
