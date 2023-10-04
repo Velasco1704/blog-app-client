@@ -12,13 +12,37 @@ interface NewPost {
   userId: string;
 }
 
+interface Login {
+  email: string;
+  password: string;
+}
+interface Register {
+  fullName: string;
+  email: string;
+  password: string;
+}
+
 export const appApi = createApi({
   reducerPath: "appApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3003/api",
+    baseUrl: "https://blog-server-xw63.onrender.com/api",
   }),
   tagTypes: ["Post"],
   endpoints: (builder) => ({
+    login: builder.mutation({
+      query: (payload: Login) => ({
+        url: "/login",
+        method: "POST",
+        body: payload,
+      }),
+    }),
+    register: builder.mutation({
+      query: (payload: Register) => ({
+        url: "/register",
+        method: "POST",
+        body: payload,
+      }),
+    }),
     getUser: builder.query<User, string>({
       query: (id: string) => `/user/${id}`,
       providesTags: ["Post"],
@@ -59,6 +83,8 @@ export const appApi = createApi({
 });
 
 export const {
+  useLoginMutation,
+  useRegisterMutation,
   useGetPostsQuery,
   useGetUserQuery,
   useCreatePostMutation,

@@ -1,10 +1,10 @@
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../features/userSlice";
 import { PiWarningDiamond } from "react-icons/pi";
 import "../styles/Form.scss";
+import { useRegisterMutation } from "../api/apiSlice";
 
 export const RegisterForm = ({
   typeOfForm,
@@ -13,13 +13,13 @@ export const RegisterForm = ({
   typeOfForm: boolean;
   setTypeOfForm: (value: boolean) => void;
 }) => {
+  const [register, { data, isSuccess, isError }] = useRegisterMutation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [error, setError] = useState(false);
   const [form, setForm] = useState({
-    fullName: null,
-    email: null,
-    password: null,
+    fullName: "",
+    email: "",
+    password: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -27,22 +27,19 @@ export const RegisterForm = ({
 
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    return await axios
-      .post("http://localhost:3003/api/register", {
-        fullName: form.fullName,
-        email: form.email,
-        password: form.password,
-      })
-      .then(({ data }) => {
-        dispatch(loginUser({ id: data.data.id, token: data.token }));
-        setError(false);
-        navigate("/");
-      })
-      .catch((res) => {
-        console.log(res);
-        setError(true);
-      });
+    register({
+      fullName: form.fullName,
+      email: form.email,
+      password: form.password,
+    });
   };
+
+  useEffect(() => {
+    if (isSuccess && !isError) {
+      dispatch(loginUser({ id: data.data.id, token: data.token }));
+      navigate("/");
+    }
+  }, [data, dispatch, isError, isSuccess, navigate]);
 
   return (
     <div className="Form__container">
@@ -50,6 +47,7 @@ export const RegisterForm = ({
       <form className="Form" onSubmit={handleSubmit}>
         <div className="Form__inputs__container">
           <input
+            required
             className="Form__input"
             type="text"
             name="fullName"
@@ -58,6 +56,7 @@ export const RegisterForm = ({
             onChange={handleChange}
           />
           <input
+            required
             className="Form__input"
             type="email"
             name="email"
@@ -66,6 +65,7 @@ export const RegisterForm = ({
             onChange={handleChange}
           />
           <input
+            required
             className="Form__input"
             type="password"
             name="password"
@@ -74,7 +74,7 @@ export const RegisterForm = ({
             onChange={handleChange}
           />
         </div>
-        {error && (
+        {isError && (
           <div className="Form__error">
             <span className="Form__error__icon">
               <PiWarningDiamond />

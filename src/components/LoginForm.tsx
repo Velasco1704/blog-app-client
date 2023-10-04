@@ -1,9 +1,9 @@
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../features/userSlice";
 import { PiWarningDiamond } from "react-icons/pi";
+import { useLoginMutation } from "../api/apiSlice";
 import "../styles/Form.scss";
 
 export const LoginForm = ({
@@ -13,12 +13,12 @@ export const LoginForm = ({
   typeOfForm: boolean;
   setTypeOfForm: (value: boolean) => void;
 }) => {
+  const [login, { data, isSuccess, isError }] = useLoginMutation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [error, setError] = useState(false);
   const [form, setForm] = useState({
-    email: null,
-    password: null,
+    email: "",
+    password: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -26,21 +26,15 @@ export const LoginForm = ({
 
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    return await axios
-      .post("http://localhost:3003/api/login", {
-        email: form.email,
-        password: form.password,
-      })
-      .then(({ data }) => {
-        dispatch(loginUser({ id: data.data.id, token: data.token }));
-        setError(false);
-        navigate("/");
-      })
-      .catch((res) => {
-        console.log(res);
-        setError(true);
-      });
+    login({ email: form.email, password: form.password });
   };
+
+  useEffect(() => {
+    if (isSuccess && !isError) {
+      dispatch(loginUser({ id: data.data.id, token: data.token }));
+      navigate("/");
+    }
+  }, [data, dispatch, isError, isSuccess, navigate]);
 
   return (
     <div className="Form__container">
@@ -64,7 +58,7 @@ export const LoginForm = ({
             placeholder="******"
           />
         </div>
-        {error && (
+        {isError && (
           <div className="Form__error">
             <span className="Form__error__icon">
               <PiWarningDiamond />
