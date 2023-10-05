@@ -25,7 +25,7 @@ interface Register {
 export const appApi = createApi({
   reducerPath: "appApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://blog-server-xw63.onrender.com/api",
+    baseUrl: "https://blog-app-server-production-88c0.up.railway.app/api",
   }),
   tagTypes: ["Post"],
   endpoints: (builder) => ({
